@@ -1,4 +1,5 @@
 *.DS_Store
+.idea
 *.pyc
 large_files
 large_files/*

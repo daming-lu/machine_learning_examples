@@ -1,0 +1,75 @@
+python pretrained_glove.py
+
+king - man = queen - woman
+france - paris = britain - london
+france - paris = italy - rome
+paris - france = rome - italy
+france - french = england - english
+japan - japanese = china - chinese
+japan - japanese = italy - italian
+japan - japanese = australia - australian
+december - november = july - june
+miami - florida = houston - texas
+einstein - scientist = matisse - painter
+china - rice = chinese - bread
+man - woman = he - she
+man - woman = uncle - aunt
+man - woman = brother - sister
+man - woman = friend - wife
+man - woman = actor - actress
+man - woman = father - mother
+heir - heiress = queen - princess
+nephew - niece = uncle - aunt
+france - paris = japan - tokyo
+france - paris = china - beijing
+february - january = october - november
+france - paris = italy - rome
+paris - france = rome - italy
+neighbors of: king
+     prince
+     queen
+     ii
+     emperor
+     son
+neighbors of: france
+     french
+     belgium
+     paris
+     spain
+     netherlands
+neighbors of: japan
+     japanese
+     china
+     korea
+     tokyo
+     taiwan
+neighbors of: einstein
+     relativity
+     bohr
+     physics
+     heisenberg
+     freud
+neighbors of: woman
+     girl
+     man
+     mother
+     her
+     boy
+neighbors of: nephew
+     cousin
+     brother
+     grandson
+     son
+     uncle
+neighbors of: february
+     october
+     december
+     january
+     august
+     september
+neighbors of: rome
+     naples
+     venice
+     italy
+     turin
+     pope

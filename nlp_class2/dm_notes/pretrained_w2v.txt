@@ -1,0 +1,115 @@
+python pretrained_w2v.py
+
+king - man = queen - woman
+france - paris = england - london
+france - paris = italy - rome
+paris - france = lohan - italy
+france - french = england - english
+japan - japanese = tibet - chinese
+japan - japanese = italy - italian
+japan - japanese = queensland - australian
+december - november = september - june
+miami - florida = dallas - texas
+einstein - scientist = jude - painter
+china - rice = dinnerware - bread
+man - woman = he - she
+man - woman = uncle - aunt
+man - woman = brother - sister
+man - woman = son - wife
+man - woman = actor - actress
+man - woman = father - mother
+heir - heiress = prince - princess
+nephew - niece = uncle - aunt
+france - paris = japan - tokyo
+france - paris = chinese - beijing
+february - january = april - november
+france - paris = italy - rome
+paris - france = lohan - italy
+neighbors of: king
+     kings
+     queen
+     monarch
+     crown_prince
+     prince
+     sultan
+     ruler
+     princes
+     Prince_Paras
+     throne
+neighbors of: france
+     spain
+     french
+     germany
+     europe
+     italy
+     england
+     european
+     belgium
+     usa
+     serbia
+neighbors of: japan
+     japanese
+     tokyo
+     america
+     europe
+     germany
+     chinese
+     india
+     hawaii
+     usa
+     korea
+neighbors of: einstein
+     nikki
+     lmfao
+     albert
+     armstrong
+     joan
+     becky
+     mcmahon
+     conrad
+     lori
+     haley
+neighbors of: woman
+     man
+     girl
+     teenage_girl
+     teenager
+     lady
+     teenaged_girl
+     mother
+     policewoman
+     boy
+     Woman
+neighbors of: nephew
+     son
+     uncle
+     brother
+     grandson
+     cousin
+     father
+     niece
+     younger_brother
+     nephews
+     stepson
+neighbors of: february
+     january
+     april
+     september
+     december
+     july
+     october
+     november
+     june
+     feb
+     norway
+neighbors of: rome
+     athens
+     albert
+     holmes
+     donnie
+     italy
+     toni
+     spain
+     jh
+     pablo
+     malta

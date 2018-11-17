@@ -92,6 +92,7 @@ print('Loading word vectors...')
 word2vec = {}
 embedding = []
 idx2word = []
+# 6 billion corpus, 50 dimension
 with open('../large_files/glove.6B/glove.6B.50d.txt', encoding='utf-8') as f:
   # is just a space-separated text file in the format:
   # word vec[0] vec[1] vec[2] ...

@@ -63,6 +63,7 @@ def find_analogies(w1, w2, w3):
   v0 = king - man + woman
 
   distances = pairwise_distances(v0.reshape(1, D), embedding, metric=metric).reshape(V)
+  # find the word index with the smallest distance
   idxs = distances.argsort()[:4]
   for idx in idxs:
     word = idx2word[idx]

@@ -153,12 +153,12 @@ def get_wikipedia_data(n_files, n_vocab, by_paragraph=False):
     word2idx_small['UNKNOWN'] = new_idx 
     unknown = new_idx
 
-    assert('START' in word2idx_small)
-    assert('END' in word2idx_small)
-    assert('king' in word2idx_small)
-    assert('queen' in word2idx_small)
-    assert('man' in word2idx_small)
-    assert('woman' in word2idx_small)
+    # assert('START' in word2idx_small)
+    # assert('END' in word2idx_small)
+    # assert('king' in word2idx_small)
+    # assert('queen' in word2idx_small)
+    # assert('man' in word2idx_small)
+    # assert('woman' in word2idx_small)
 
     # map old idx to new idx
     sentences_small = []

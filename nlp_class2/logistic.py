@@ -21,6 +21,7 @@ from rnn_class.brown import get_sentences_with_word2idx_limit_vocab, get_sentenc
 from markov import get_bigram_probs
 
 
+import pdb;pdb.set_trace()
 if __name__ == '__main__':
   # load in the data
   # note: sentences are already converted to sequences of word indexes

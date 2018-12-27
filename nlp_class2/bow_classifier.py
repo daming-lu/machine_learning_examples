@@ -126,7 +126,7 @@ class Word2VecVectorizer:
     return self.transform(data)
 
 
-
+import pdb;pdb.set_trace()
 vectorizer = GloveVectorizer()
 # vectorizer = Word2VecVectorizer()
 Xtrain = vectorizer.fit_transform(train.content)
@@ -138,7 +138,8 @@ Ytest = test.label
 
 
 # create the model, train it, print scores
-model = RandomForestClassifier(n_estimators=200)
+# model = RandomForestClassifier(n_estimators=1)
+model = ExtraTreesClassifier(n_estimators=200)
 model.fit(Xtrain, Ytrain)
 print("train score:", model.score(Xtrain, Ytrain))
 print("test score:", model.score(Xtest, Ytest))

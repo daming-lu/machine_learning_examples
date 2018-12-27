@@ -149,8 +149,7 @@ if __name__ == '__main__':
   plt.subplot(1,2,2)
   plt.title("Bigram Probs")
   plt.imshow(W_bigram)
-  plt.show()
-
-
+  # plt.show()
+  plt.savefig('nn2.png')
 
 

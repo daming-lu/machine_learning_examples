@@ -118,7 +118,7 @@ def get_wikipedia_data(n_files, n_vocab, by_paragraph=False):
 
     # input_files = ['enwiki-20181220-pages-articles99.xml-p10p30302-06.txt']
     # Eindhoven
-    input_files = ['enwiki-20181220-pages-articles1.xml-p10p30302-10.txt']
+    # input_files = ['enwiki-20181220-pages-articles1.xml-p10p30302-10.txt']
 
     for f in input_files:
         print("reading:", f)

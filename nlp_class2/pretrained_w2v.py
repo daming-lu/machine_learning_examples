@@ -8,7 +8,7 @@ from builtins import range
 # Note: you may need to update your version of future
 # sudo pip install -U future
 
-
+import pdb;pdb.set_trace()
 from gensim.models import KeyedVectors
 
 

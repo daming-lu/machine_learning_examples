@@ -28,17 +28,17 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 def main():
     analogies_to_try = (
-        # ('king', 'man', 'woman'),
-        # ('france', 'paris', 'london'),
-        # ('france', 'paris', 'rome'),
-        # ('paris', 'france', 'italy'),
-        ('city', 'state', 'german'),
+        ('king', 'man', 'woman'),
+        ('france', 'paris', 'london'),
+        ('france', 'paris', 'rome'),
+        ('paris', 'france', 'italy'),
+        # ('city', 'state', 'german'),
     )
 
     ### choose a data source ###
     # sentences, word2idx = get_sentences_with_word2idx_limit_vocab(n_vocab=1500)
-    # sentences, word2idx = get_wikipedia_data(n_files=3, n_vocab=2000, by_paragraph=True)
-    sentences, word2idx = get_wikipedia_data(n_files=5, n_vocab=2000, by_paragraph=True)
+    sentences, word2idx = get_wikipedia_data(n_files=3, n_vocab=2000, by_paragraph=True)
+    # sentences, word2idx = get_wikipedia_data(n_files=5, n_vocab=2000, by_paragraph=True)
     # with open('tfidf_word2idx.json', 'w') as f:
     #     json.dump(word2idx, f)
 

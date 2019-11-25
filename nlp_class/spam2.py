@@ -35,22 +35,26 @@ df.columns = ['labels', 'data']
 df['b_labels'] = df['labels'].map({'ham': 0, 'spam': 1})
 Y = df['b_labels'].values
 
-# try multiple ways of calculating features
-# tfidf = TfidfVectorizer(decode_error='ignore')
-# X = tfidf.fit_transform(df['data'])
-
-count_vectorizer = CountVectorizer(decode_error='ignore')
-X = count_vectorizer.fit_transform(df['data'])
-
 # split up the data
-Xtrain, Xtest, Ytrain, Ytest = train_test_split(X, Y, test_size=0.33)
+df_train, df_test, Ytrain, Ytest = train_test_split(df['data'], Y, test_size=0.33)
+
+# try multiple ways of calculating features
+tfidf = TfidfVectorizer(decode_error='ignore')
+Xtrain = tfidf.fit_transform(df_train)
+Xtest = tfidf.transform(df_test)
+
+# count_vectorizer = CountVectorizer(decode_error='ignore')
+# Xtrain = count_vectorizer.fit_transform(df_train)
+# Xtest = count_vectorizer.transform(df_test)
+
+
 
 # create the model, train it, print scores
 model = MultinomialNB()
 model.fit(Xtrain, Ytrain)
 print("train score:", model.score(Xtrain, Ytrain))
 print("test score:", model.score(Xtest, Ytest))
-exit()
+# exit()
 
 
 # visualize the data
@@ -69,6 +73,7 @@ visualize('ham')
 
 
 # see what we're getting wrong
+X = tfidf.transform(df['data'])
 df['predictions'] = model.predict(X)
 
 # things that should be spam

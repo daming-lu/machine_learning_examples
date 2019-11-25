@@ -1,3 +1,9 @@
+Hacking Google reCAPTCHA v3 using Reinforcement Learning
+https://arxiv.org/pdf/1903.01003.pdf
+
+Practical Deep Reinforcement Learning Approach for Stock Trading
+https://arxiv.org/abs/1811.07522
+
 Reinforcement Learning: A Tutorial Survey and Recent Advances - Abhijit Gosavi
 http://web.mst.edu/~gosavia/joc.pdf
 
@@ -36,3 +42,6 @@ https://arxiv.org/pdf/1704.01161.pdf
 
 Mastering the game of Go with deep neural networks and tree search - Silver, D. et al.
 https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf
+
+Learning Rates for Q-learning
+http://www.jmlr.org/papers/volume5/evendar03a/evendar03a.pdf

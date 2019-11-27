@@ -152,7 +152,7 @@ def train_model(savedir):
         replace=False,
       )
 
-      
+
       for pos in randomly_ordered_positions:
         # the middle word
         word = sentence[pos]
@@ -355,4 +355,3 @@ if __name__ == '__main__':
   word2idx, W, V = train_model('w2v_model')
   # word2idx, W, V = load_model('w2v_model')
   test_model(word2idx, W, V)
-

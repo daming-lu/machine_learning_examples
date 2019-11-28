@@ -138,6 +138,7 @@ class Glove:
 
 
 def main(we_file, w2i_file, n_files=50):
+    # co-occurrence matrix
     cc_matrix = 'cc_matrix_%s.npy' % n_files
 
     if os.path.exists(cc_matrix):
@@ -169,9 +170,12 @@ if __name__ == '__main__':
     import pdb;pdb.set_trace()
     main(we, w2i)
 
+    # map back to word in plot
+    # idx2word = {v: k for k, v in iteritems(w2i)}
+
     for concat in (True, False):
         print('concat {}'.format(concat))
-        find_analogies('king', 'man', 'woman')
+        find_analogies('king', 'man', 'woman', we, w2i, )
         find_analogies('france', 'paris', 'london')
         find_analogies('france', 'paris', 'rome')
         find_analogies('paris', 'france', 'italy')

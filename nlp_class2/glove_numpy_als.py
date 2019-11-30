@@ -17,8 +17,8 @@ from util import find_analogies
 class Glove:
     def __init__(self, D, V, context_sz):
         self.D = D  # dimensionality size
-        self.V = V  # Vocabulary size?
-        self.context_sz = context_sz
+        self.V = V  # Vocabulary size, yes, 2000
+        self.context_sz = context_sz  # context window in a sentence
 
     def fit(self, sentences, cc_matrix=None, learning_rate=10e-5, reg=0.1,
             xmax=100, alpha=0.75, epochs=10, gd=False, use_theano=True):
@@ -124,8 +124,67 @@ class Glove:
                     c -= learning_rate * reg * c
             else:
                 # ALS
-                pass
 
+                # ALS method
+
+                # update W
+                # fast way
+                # t0 = datetime.now()
+                for i in range(V):
+                    # matrix = reg*np.eye(D) + np.sum((fX[i,j]*np.outer(U[j], U[j]) for j in range(V)), axis=0)
+                    matrix = reg*np.eye(D) + (fX[i,:]*U.T).dot(U)
+                    # assert(np.abs(matrix - matrix2).sum() < 1e-5)
+                    vector = (fX[i,:]*(logX[i,:] - b[i] - c - mu)).dot(U)
+                    W[i] = np.linalg.solve(matrix, vector)
+                # print "fast way took:", (datetime.now() - t0)
+
+                # slow way
+                # t0 = datetime.now()
+                # for i in range(V):
+                #     matrix2 = reg*np.eye(D)
+                #     vector2 = 0
+                #     for j in range(V):
+                #         matrix2 += fX[i,j]*np.outer(U[j], U[j])
+                #         vector2 += fX[i,j]*(logX[i,j] - b[i] - c[j])*U[j]
+                # print "slow way took:", (datetime.now() - t0)
+
+                    # assert(np.abs(matrix - matrix2).sum() < 1e-5)
+                    # assert(np.abs(vector - vector2).sum() < 1e-5)
+                    # W[i] = np.linalg.solve(matrix, vector)
+                # print "updated W"
+
+                # update b
+                for i in range(V):
+                    denominator = fX[i,:].sum() + reg
+                    # assert(denominator > 0)
+                    numerator = fX[i,:].dot(logX[i,:] - W[i].dot(U.T) - c - mu)
+                    # for j in range(V):
+                    #     numerator += fX[i,j]*(logX[i,j] - W[i].dot(U[j]) - c[j])
+                    b[i] = numerator / denominator
+                # print "updated b"
+
+                # update U
+                for j in range(V):
+                    # matrix = reg*np.eye(D) + np.sum((fX[i,j]*np.outer(W[i], W[i]) for i in range(V)), axis=0)
+                    matrix = reg*np.eye(D) + (fX[:,j]*W.T).dot(W)
+                    # assert(np.abs(matrix - matrix2).sum() < 1e-8)
+                    vector = (fX[:,j]*(logX[:,j] - b - c[j] - mu)).dot(W)
+                    # matrix = reg*np.eye(D)
+                    # vector = 0
+                    # for i in range(V):
+                    #     matrix += fX[i,j]*np.outer(W[i], W[i])
+                    #     vector += fX[i,j]*(logX[i,j] - b[i] - c[j])*W[i]
+                    U[j] = np.linalg.solve(matrix, vector)
+                # print "updated U"
+
+                # update c
+                for j in range(V):
+                    denominator = fX[:,j].sum() + reg
+                    numerator = fX[:,j].dot(logX[:,j] - W.dot(U[j]) - b  - mu)
+                    # for i in range(V):
+                    #     numerator += fX[i,j]*(logX[i,j] - W[i].dot(U[j]) - b[i])
+                    c[j] = numerator / denominator
+                # print "updated c"
         self.W = W
         self.U = U
 
@@ -157,8 +216,8 @@ def main(we_file, w2i_file, n_files=50):
         cc_matrix=cc_matrix,
         learning_rate=3*10e-5,
         reg=0.01,
-        epochs=2000,
-        gd=True,
+        epochs=20,
+        gd=False,
         use_theano=False
     )
     model.save(we_file)
@@ -172,15 +231,27 @@ if __name__ == '__main__':
 
     # map back to word in plot
     # idx2word = {v: k for k, v in iteritems(w2i)}
-
+    # load back embeddings
+    npz = np.load(we)
+    W1 = npz['arr_0']
+    W2 = npz['arr_1']
+    with open(w2i) as f:
+        word2idx = json.load(f)
+        idx2word = {i:w for w,i in word2idx.items()}
     for concat in (True, False):
         print('concat {}'.format(concat))
-        find_analogies('king', 'man', 'woman', we, w2i, )
-        find_analogies('france', 'paris', 'london')
-        find_analogies('france', 'paris', 'rome')
-        find_analogies('paris', 'france', 'italy')
-        find_analogies('france', 'french', 'english')
-        find_analogies('japan', 'japanese', 'chinese')
-        find_analogies('japan', 'japanese', 'italian')
-        find_analogies('japan', 'japanese', 'australian')
-        find_analogies('december', 'november', 'june')
+
+        if concat:
+            We = np.hstack([W1, W2.T])
+        else:
+            We = (W1 + W2.T) / 2
+
+        find_analogies('king', 'man', 'woman', We, word2idx, idx2word)
+        find_analogies('france', 'paris', 'london', We, word2idx, idx2word)
+        find_analogies('france', 'paris', 'rome', We, word2idx, idx2word)
+        find_analogies('paris', 'france', 'italy', We, word2idx, idx2word)
+        find_analogies('france', 'french', 'english', We, word2idx, idx2word)
+        find_analogies('japan', 'japanese', 'chinese', We, word2idx, idx2word)
+        find_analogies('japan', 'japanese', 'italian', We, word2idx, idx2word)
+        find_analogies('japan', 'japanese', 'australian', We, word2idx, idx2word)
+        find_analogies('december', 'november', 'june', We, word2idx, idx2word)

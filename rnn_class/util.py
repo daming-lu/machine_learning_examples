@@ -165,6 +165,7 @@ def get_wikipedia_data(n_files, n_vocab, by_paragraph=False):
     # assert('woman' in word2idx_small)
 
     # map old idx to new idx
+    # the following for loop really took some time.
     sentences_small = []
     for sentence in sentences:
         if len(sentence) > 1:

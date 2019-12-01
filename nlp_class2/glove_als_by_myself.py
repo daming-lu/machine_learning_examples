@@ -125,6 +125,7 @@ class Glove:
             else:
                 # ALS
                 # TODO
+                print('als')
                 pass
 
         self.W = W

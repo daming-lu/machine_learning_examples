@@ -126,7 +126,33 @@ class Glove:
                 # ALS
                 # TODO
                 print('als')
-                pass
+                # W
+                for i in range(V):
+                    matrix = (fX[i, :]*U.T).dot(U) + np.eye(D)*reg
+                    vector = (fX[i, :]*(logX[i,:] - b[i] - c - mu)).dot(U)
+                    W[i] = np.linalg.solve(matrix, vector)
+                # b
+                for i in range(V):
+                    denominator = fX[i,:].sum() + reg
+                    # numerator = fX[i,:]*(logX[i,:] - W[i].dot(U.T) - c - mu)
+                    numerator = 0
+                    for j in range(V):
+                        numerator += fX[i,j]*(logX[i,j] - W[i].dot(U[j].T) - c[j] - mu)
+                    b[i] = numerator / denominator
+                # U
+                for j in range(V):
+                    matrix = (fX[:,j]*W.T).dot(W) + np.eye(D)*reg
+                    vector = (fX[:,j]*(logX[:,j] - b - c[j] - mu)).dot(W)
+                    U[j] = np.linalg.solve(matrix, vector)
+                # c
+                for j in range(V):
+                    denominator = fX[:,j].sum() + reg
+                    numerator = 0
+                    for i in range(V):
+                        numerator += fX[i,j]*(logX[i,j] - W[i].dot(U[j].T) - b[i] - mu)
+                    c[j] = numerator / denominator
+
+
 
         self.W = W
         self.U = U

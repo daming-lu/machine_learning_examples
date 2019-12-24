@@ -27,7 +27,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 
 def main():
-    # import pdb;pdb.set_trace()
+    import ipdb;ipdb.set_trace()
     analogies_to_try = (
         ('king', 'man', 'woman'),
         ('france', 'paris', 'london'),

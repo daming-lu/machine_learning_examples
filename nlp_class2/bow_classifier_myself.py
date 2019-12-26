@@ -17,7 +17,7 @@ train.columns = ['label', 'content']
 test.columns = ['label', 'content']
 
 print('here')
-
+import ipdb;ipdb.set_trace()
 class GloveVectorizer:
     def __init__(self):
         # load in pre-trained word vectors

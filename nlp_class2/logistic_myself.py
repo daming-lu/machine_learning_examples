@@ -17,7 +17,7 @@ from rnn_class.brown import get_sentences_with_word2idx_limit_vocab, get_sentenc
 
 from markov_myself import get_bigram_probs
 
-import pdb;pdb.set_trace()
+import ipdb;ipdb.set_trace()
 
 if __name__ == '__main__':
     # load in the data

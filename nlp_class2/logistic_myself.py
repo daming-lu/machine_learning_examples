@@ -115,6 +115,7 @@ if __name__ == '__main__':
             last = z
         return y
 
+    # make the zig-zag more clear with less variance
     plt.plot(smoothed_loss(losses))
     plt.show()
 
